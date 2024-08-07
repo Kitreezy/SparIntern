@@ -11,7 +11,7 @@ import SwiftUI
 struct SparInternApp: App {
     var body: some Scene {
         WindowGroup {
-            ProductListView()
+            ProductMainView()
         }
     }
 }

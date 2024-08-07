@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct ProductListView: View {
+    @ObservedObject private var viewModel = ProductViewModel()
+    
     var body: some View {
-      Text("HELLO")
+        VStack {
+            List {
+                ForEach(viewModel.products) { product in
+                    
+                }
+            }
+        }
     }
 }
 

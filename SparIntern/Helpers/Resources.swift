@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 
 enum R {
@@ -18,22 +19,22 @@ enum R {
         static let shadowBackgroundCard = UIColor(hexString: "#8B8B8B")
         
         static let discountColor = UIColor(hexString: "#262626")
-        static let shopButton = UIColor(hexString: "#15B742")
+        static let cartButton = UIColor(hexString: "#15B742")
         
     }
     
     // MARK: - String Section
     enum Strings {
-        static let rateStar = "RateStar"
-        static let orderAction = "OrderProduct"
-        static let favoritesAction = "FavoriteProduct"
-        static let gridButton = "Grid"
+        
     }
     
     // MARK: - Image Section
     enum Images {
-        static let rateStar = UIImage(systemName: "RateStar")
-        static let listButton = UIImage(systemName: "List")
-        static let gridButton = UIImage(systemName: "Grid")
+        static let orderAction = Image("OrderProduct")
+        static let favoritesAction = Image("FavoriteProduct")
+        static let rateStar = Image("RateStar")
+        static let listButton = Image("List")
+        static let gridButton = Image("Grid")
+        static let cartButton = Image("CartButton")
     }
 }

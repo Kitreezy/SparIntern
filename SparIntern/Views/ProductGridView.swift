@@ -8,42 +8,32 @@
 import SwiftUI
 
 
-struct ProductGridView: View {
-    @Binding var products: [ProductInformation]
+struct ProductGridView: View {    
+    @ObservedObject private var viewModel = ProductViewModel()
     
     var body: some View {
         NavigationStack {
-            
             ScrollView(.vertical, showsIndicators: false) {
                 HStack {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2)) {
-                        ForEach($products) { $products in
-                            ProductCardView(product: products)
+                        ForEach(viewModel.products) { product in
+                            ProductCardView(product: product)
                         }
                     }
                     .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 }
             }
-            .padding(.bottom, 16)
             .frame(width: 375)
-           
-            .toolbar {
-                ToolbarItem (placement: .topBarLeading) {
-                    Button {
-                        
-                    } label: {
-                        Image(R.Strings.gridButton)
-                        
-                    }
-                }
-            }
+         
         }
     }
 }
 
 
+
+
 struct ProductGrid_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        ProductGridView(products: .constant(ProductInformation.mockData))
+        ProductGridView()
     }
 }

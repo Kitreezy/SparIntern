@@ -12,74 +12,81 @@ struct ProductCardView: View {
     let product: ProductInformation
     
     var body: some View {
-        ZStack {
+        VStack(alignment: .leading) {
+            
+            Image(product.image)
+                .resizable()
+                .frame(width: 168, height: 168)
+                .overlay(alignment: .bottomLeading, content: {
+                    HStack(spacing: 2) {
+                        R.Images.rateStar
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                        Text(String(format: "%.1f", product.rating))
+                            .font(.system(size: 12, weight: .regular))
+                    }
+                    .padding(.leading, 4)
+                })
+            
             VStack(alignment: .leading) {
-                Image(product.image)
-                    .resizable()
-                    .frame(width: 168, height: 168)
-                    
-                    .overlay(alignment: .bottomLeading, content: {
-                        HStack(spacing: 2) {
-                            Image(R.Strings.rateStar)
-                                .resizable()
-                                .frame(width: 16, height: 16)
-                            Text(String(format: "%.1f", product.rating))
-                                .font(.system(size: 12, weight: .regular))
-                        }
-                        .padding(.leading, 5)
-                    })
-                    
-                VStack(alignment: .leading) {
                 Text(product.title)
-                    .lineLimit(nil)
+                    .lineLimit(2)
                     .font(.system(size: 12, weight: .regular))
-                    Spacer()
+                
+                Spacer()
+                
+                HStack {
                     VStack(alignment: .leading) {
-                        HStack() {
-                            Text("\(product.price)")
-                                .font(.system(size: 20, weight: .bold))
-                            Text("\(product.kopecs)")
-                                .font(.system(size: 16, weight: .bold))
-                                .offset(x: -5)
+                        HStack(spacing: 0) {
+                            Text(String(product.price))
+                                .font(.system(size: 15, weight: .semibold))
+                                
+                            Text(" \(product.kopecs)")
+                                .font(.system(size: 10, weight: .semibold))
+                                .padding(.bottom, 4)
+                            
                             HStack(spacing: 0) {
                                 Text("р")
-                                    .font(.system(size: 12, weight: .bold))
-                                    .padding(.trailing, 3)
+                                    .font(.system(size: 8, weight: .bold))
                                     .offset(x: 5, y: -5)
-                                GeometryReader { geometry in
-                                    Path { path in
-                                        let start = CGPoint(x: 0, y: geometry.size.height)
-                                        let end = CGPoint(x: geometry.size.width, y: 0)
-                                        path.move(to: start)
-                                        path.addLine(to: end)
-                                    }
-                                    .stroke(Color.black, lineWidth: 1)
-                                }
-                                .frame(width: 13, height: 15)
+                                DiagonalDivider()
+                                    .stroke(Color.black, lineWidth: 1.5)
+                                    .frame(width: 10, height: 10)
+                                
                                 Text("кг")
-                                    .font(.system(size: 12, weight: .bold))
+                                    .font(.system(size: 8, weight: .bold))
                                     .offset(x: -5, y: 5)
                             }
-                            .offset(x: -13)
                         }
-                        
+
                         Text(String(format: "%.1f", product.discount))
                             .strikethrough()
                             .foregroundStyle(Color(R.Colors.discountColor).opacity(0.6))
                             .font(.system(size: 12, weight: .regular))
+                            .padding(.top, -10)
+                            
                     }
-                    .padding(.bottom)
+                    .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
+                    Spacer()
+                    
+                    Button {
+                        
+                    } label: {
+                        R.Images.cartButton
+                    }
+                    .frame(width: 48, height: 36)
+                    .background(Color(R.Colors.cartButton))
+                    .clipShape(.rect(cornerRadius: 20))
                 }
-                .frame(width: 168, height: 110)
-                .padding(.leading, -20)
+                
             }
+            .padding(EdgeInsets(top: 0, leading: 8, bottom: 4, trailing: 4))
         }
-        .padding()
         .frame(width: 168, height: 278)
         .background(Color(R.Colors.backgroundCard))
-        .clipShape(.rect(cornerRadius: 16))
+        .clipShape(.rect(topLeadingRadius: 16, bottomLeadingRadius: 16, bottomTrailingRadius: 20, topTrailingRadius: 20))
         .shadow(color: Color(R.Colors.shadowBackgroundCard).opacity(0.2), radius: 8)
-        
+    
         .overlay(alignment: .topTrailing, content: {
             actionList
         })
@@ -89,19 +96,17 @@ struct ProductCardView: View {
         ZStack {
             VStack(alignment: .trailing) {
                 Button {
-                    
+                // some action
                 } label: {
-                    Image(R.Strings.orderAction)
+                    R.Images.orderAction
                 }
-                
                 Button {
-                    
+                // some action
                 } label: {
-                    Image(R.Strings.favoritesAction)
+                    R.Images.favoritesAction
                 }
             }
         }
-//        .padding()
         .frame(width: 32, height: 64)
         .background(Color(R.Colors.actionListBackground).opacity(0.8))
         .clipShape(.rect(cornerRadius: 16))
@@ -109,8 +114,18 @@ struct ProductCardView: View {
     }
 }
 
+struct DiagonalDivider: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.maxX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        
+        return path
+    }
+}
+
 struct ProductCardView_PreviewProvider: PreviewProvider {
-    static var product = ProductInformation.mockData[12]
+    static var product = ProductInformation.mockData[1]
     static var previews: some View {
         ProductCardView(product: product)
     }
