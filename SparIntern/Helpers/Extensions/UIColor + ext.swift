@@ -5,7 +5,7 @@
 //  Created by Artem Rodionov on 06.08.2024.
 //
 
-import UIKit
+import SwiftUI
 
 extension UIColor {
     convenience init(hexString: String) {
