@@ -12,19 +12,19 @@ struct ProductGridView: View {
     @ObservedObject private var viewModel = ProductViewModel()
     
     var body: some View {
-        NavigationStack {
+        VStack {
+            Divider()
             ScrollView(.vertical, showsIndicators: false) {
-                HStack {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2)) {
-                        ForEach(viewModel.products) { product in
-                            ProductCardView(product: product)
+                    HStack {
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2)) {
+                            ForEach(viewModel.products) { product in
+                                ProductCardGridView(product: product)
+                            }
                         }
+                        .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                     }
-                    .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 }
-            }
             .frame(width: 375)
-         
         }
     }
 }

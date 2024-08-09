@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum ViewMode {
-    case grid
-    case list
-}
 
 class ProductViewModel:  ObservableObject {
     @Published private(set) var products: [ProductInformation] = []
@@ -28,4 +24,9 @@ class ProductViewModel:  ObservableObject {
     private func loadProducts() {
         products = ProductService.getMockProduct()
     }
+}
+
+enum ViewMode {
+    case grid
+    case list
 }
