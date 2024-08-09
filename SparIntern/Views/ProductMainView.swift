@@ -14,9 +14,9 @@ struct ProductMainView: View {
         NavigationStack {
             VStack {
                 if viewModel.currentViewMode == .grid {
-                    ProductGridView()
+                    ProductListView()
                 } else {
-                    
+                    ProductGridView()
                 }
             }
             .toolbar {
