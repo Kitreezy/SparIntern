@@ -16,11 +16,12 @@ struct ProductCardListView: View {
     var body: some View {
         VStack {
             Divider()
+            // MARK: - CardView
             HStack {
                 Image(product.image)
                     .resizable()
                     .frame(width: 168, height: 168)
-                
+                // MARK: - Rate + review
                 VStack(alignment: .leading) {
                     HStack(spacing: 2) {
                         R.Images.rateStar
@@ -33,7 +34,7 @@ struct ProductCardListView: View {
                             .foregroundStyle(Color.gray)
                     }
                     
-                    
+                    // MARK: - Title
                     Text(product.title)
                         .lineLimit(2)
                         .font(.system(size: 12, weight: .regular))
@@ -41,6 +42,7 @@ struct ProductCardListView: View {
                     Spacer()
                     
                     if isCompact {
+                        // MARK: - Bottom Price + cent + discount + button
                         HStack {
                             VStack(alignment: .leading) {
                                 HStack(spacing: 0) {
@@ -77,7 +79,6 @@ struct ProductCardListView: View {
                         }
                         
                     } else {
-
                             CartButtonView(product: product, isCompact: $isCompact)
                     }
                 }
@@ -85,11 +86,11 @@ struct ProductCardListView: View {
             }
             .frame(width: 375, height: 176)
             .background(Color(R.Colors.backgroundCard))
-        
+        // MARK: - Order + Favorite
             .overlay(alignment: .topTrailing) {
                 ActionListView(isFavorite: $isFavorite)
             }
-            
+            // MARK: - Badge Special 
             .overlay(alignment: .topLeading) {
                 Text(product.badge?.rawValue ?? "")
                     .font(.system(size: 10))

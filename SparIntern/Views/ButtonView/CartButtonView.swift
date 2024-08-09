@@ -55,9 +55,11 @@ struct CartButtonView: View {
                         Spacer()
                         
                         VStack(alignment: .center) {
-                            Text(selectedAmount == "КГ" ? "\(String(format: "%.1f", weight)) кг" : "\(count) шт")
+                            Text(selectedAmount == "КГ" ? 
+                                 "\(String(format: "%.1f", weight)) кг" : "\(count) шт")
                                 .font(.system(size: 16, weight: .bold))
-                            Text(selectedAmount == "КГ" ? "~\(String(format: "%.2f", weight * Double(product.price))) Р" : "\(count * product.price) Р")
+                            Text(selectedAmount == "КГ" ? 
+                                 "~\(String(format: "%.2f", weight * Double(product.price))) Р" : "\(count * product.price) Р")
                                 .font(.system(size: 12))
                         }
                         .onTapGesture {

@@ -35,7 +35,7 @@ extension ProductInformation {
                            price: 99, kopecs: 90, discount: 199.0),
         ProductInformation(image: "Img15", badge: nil, rating: 4.1, title: "Энергетический напиток",
                            price: 95699, kopecs: 90, discount: 199.0),
-        ProductInformation(image: "Img3", badge: nil, rating: 4.1, title: "Салат Овощной с Крабовыми Палочками",
+        ProductInformation(image: "ImgDefault", badge: nil, rating: 4.1, title: "Салат Овощной с Крабовыми Палочками",
                            price: 250, kopecs: 90, discount: 199.0),
         ProductInformation(image: "Img4", badge: nil, rating: 4.1, title: "Дорадо Охлажденная Непотрошеная 300-400г",
                            price: 99, kopecs: 90, discount: 199.0),

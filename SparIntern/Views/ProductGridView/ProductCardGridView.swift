@@ -16,8 +16,8 @@ struct ProductCardGridView: View {
     
     
     var body: some View {
+        // MARK: - CardView
         VStack(alignment: .leading) {
-            
             Image(product.image)
                 .resizable()
                 .frame(width: 168, height: 168)
@@ -31,7 +31,7 @@ struct ProductCardGridView: View {
                     }
                     .padding(.leading, 4)
                 })
-            
+            // MARK: - Bottom ViewStack
             VStack(alignment: .leading) {
                 Text(product.title)
                     .lineLimit(2)
@@ -40,6 +40,7 @@ struct ProductCardGridView: View {
                 Spacer()
                 
                 if isCompact {
+                    // MARK: - Bottom price + cent + discount + button
                     HStack {
                         VStack(alignment: .leading) {
                             HStack(spacing: 0) {
@@ -86,11 +87,11 @@ struct ProductCardGridView: View {
         .background(Color(R.Colors.backgroundCard))
         .clipShape(.rect(topLeadingRadius: 20, bottomLeadingRadius: 20, bottomTrailingRadius: 16, topTrailingRadius: 16))
         .shadow(color: Color(R.Colors.shadowBackgroundCard).opacity(0.2), radius: 8)
-    
+    // MARK: - Order + Favorite
         .overlay(alignment: .topTrailing) {
             ActionListView(isFavorite: $isFavorite)
         }
-        
+        // MARK: - Badge Special
         .overlay(alignment: .topLeading) {
             Text(product.badge?.rawValue ?? "")
                 .font(.system(size: 10))
