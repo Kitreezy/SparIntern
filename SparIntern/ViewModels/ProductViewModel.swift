@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// MARK: - Local Product ViewModel
 class ProductViewModel:  ObservableObject {
     @Published private(set) var products: [ProductInformation] = []
     @Published var currentViewMode: ViewMode = .grid
@@ -20,7 +20,6 @@ class ProductViewModel:  ObservableObject {
     func toggleViewMode() {
         currentViewMode = (currentViewMode == .grid) ? .list : .grid
     }
-    
     private func loadProducts() {
         products = ProductService.getMockProduct()
     }
